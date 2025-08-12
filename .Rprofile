@@ -1,1 +1,1 @@
-file.edit("examples/mcnemar.R")
+library(utils); file.edit("examples/mcnemar.R")
