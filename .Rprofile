@@ -1,1 +1,1 @@
-try(file.edit("examples/mcnemar.R"), silent = TRUE)
+file.edit("examples/mcnemar.R")
