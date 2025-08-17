@@ -1,6 +1,6 @@
 ---
 title: "McNemar's Test in R"
-author: "Vijay"
+author: "YUVIJEN"
 date: "`r Sys.Date()`"
 output: html_document
 ---
