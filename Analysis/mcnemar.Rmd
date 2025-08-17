@@ -1,6 +1,6 @@
 ---
 title: "McNemar's Test in R"
-author: "YUVIJEN"
+author: "<img src='../yuvijen-logo.png' style='height:30px; vertical-align:middle; margin-right:8px;'>"
 date: "`r Sys.Date()`"
 output: html_document
 ---
