@@ -10,7 +10,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = TRUE)
 ```
 
-First, we define our significance level (alpha) and create the 2x2 contingency table representing paired nominal data (e.g., pre-test vs. post-test results).
+First, we define our significance level (alpha). 
+
+create the 2x2 contingency table representing paired nominal data (e.g., pre-test vs. post-test results).
 
 ```{r}
 alpha <- 0.05
