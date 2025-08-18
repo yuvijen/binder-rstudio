@@ -1,5 +1,5 @@
 ---
-title: "McNemar's Test in R"
+title: "Cochran's Q Test in R"
 author: "<img src='../yuvijen-logo.png' style='height:30px; vertical-align:middle; margin-right:8px;'>"
 date: "`r Sys.Date()`"
 output: html_document
