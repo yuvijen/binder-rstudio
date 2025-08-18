@@ -1,0 +1,94 @@
+---
+title: "McNemar's Test in R"
+author: "<img src='../yuvijen-logo.png' style='height:30px; vertical-align:middle; margin-right:8px;'>"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# This chunk sets up the environment. `include=FALSE` means the code runs but isn't shown in the output.
+knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = TRUE)
+```
+
+
+First, make sure that you have the necessary package installed for conducting the Cochran’s Q test:
+
+Then, use the following R code:
+
+```{r}
+library(DescTools)
+# Data for the Cochran's Q Test
+# Rows are testers, columns are software versions
+data <- matrix(c(
+  1, 0, 1,
+  1, 1, 1,
+  0, 0, 0,
+  1, 1, 1,
+  0, 1, 0
+), byrow = TRUE, nrow = 5)
+
+# Perform Cochran's Q Test
+result <- CochranQTest(data)
+
+# Output the result
+print(result)
+
+
+```
+
+This will calculate Cochran's Q test for the given matrix where each row represents a tester and each column represents a version of the software.
+
+
+
+---
+
+### R Code for Post-hoc Test:
+
+```{r, eval=FALSE}
+install.packages("rcompanion")
+```
+
+
+```{r}
+
+library(rcompanion)
+
+# Create data in long format for post-hoc analysis
+long_data <- data.frame(
+  Participant = rep(1:10, times = 4),
+  Diet = factor(rep(c("A", "B", "C", "D"), each = 10)),
+  Success = c(1,1,1,0,1,1,1,0,0,0,  1,1,1,1,1,1,0,1,0,0,  0,1,0,0,0,0,0,1,0,1,  1,0,1,0,1,0,1,0,1,1)
+)
+
+# Create contingency tables for each pair of diets and perform pairwise comparisons
+
+# Here's how you might create a contingency table for diets A and B:
+dietA_dietB <- with(long_data, table(DietA = Success[Diet == "A"], DietB = Success[Diet == "B"]))
+
+# Now perform a McNemar test on this contingency table
+mcnemar_test_AB <- mcnemar.test(dietA_dietB)
+
+# Print the result
+print(mcnemar_test_AB)
+
+# Here's how you might create a contingency table for diets A and C:
+dietA_dietC <- with(long_data, table(DietA = Success[Diet == "A"], DietC = Success[Diet == "C"]))
+
+# Now perform a McNemar test on this contingency table
+mcnemar_test_AC <- mcnemar.test(dietA_dietC)
+
+# Print the result
+print(mcnemar_test_AC)
+
+# Here's how you might create a contingency table for diets A and D:
+dietA_dietD <- with(long_data, table(DietA = Success[Diet == "C"], DietD = Success[Diet == "D"]))
+
+# Now perform a McNemar test on this contingency table
+mcnemar_test_AD <- mcnemar.test(dietA_dietD)
+
+# Print the result
+print(mcnemar_test_AD)
+
+```
+
+---
