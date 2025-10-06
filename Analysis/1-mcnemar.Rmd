@@ -1,0 +1,44 @@
+---
+title: "McNemar's Test in R"
+author: "<img src='../yuvijen-logo.png' style='height:30px; vertical-align:middle; margin-right:8px;'>"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# This chunk sets up the environment. `include=FALSE` means the code runs but isn't shown in the output.
+knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = TRUE)
+```
+
+First, we define our significance level (alpha). 
+
+create the 2x2 contingency table representing paired nominal data (e.g., pre-test vs. post-test results).
+
+```{r}
+alpha <- 0.05
+
+# Create the 2x2 contingency table
+# Rows = Pre-test (Yes, No)
+# Columns = Post-test (Yes, No)
+contingency_table <- matrix(c(20, 15, 5, 10), nrow = 2, byrow = TRUE, dimnames = list(Pre = c("Yes","No"), Post = c("Yes","No")))
+
+print(contingency_table)
+
+result_base <- mcnemar.test(contingency_table)
+print(result_base)
+
+```
+
+
+Finally, we compare the p-value from the base R test to our significance level to make a statistical decision.
+
+```{r}
+# Make a decision based on the p-value and alpha
+p_value <- result_base$p.value
+if (p_value < alpha) {
+  cat('Conclusion: Reject the null hypothesis (alpha=', alpha, ')\n', sep='')
+} else {
+  cat('Conclusion: Do not reject the null hypothesis (alpha=', alpha, ')\n', sep='')
+}
+```
+
