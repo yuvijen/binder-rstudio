@@ -1,0 +1,4 @@
+#!/bin/bash
+export RSERVER_TIMEOUT=60
+export RSESSION_TIMEOUT=60
+exec "$@"
